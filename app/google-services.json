@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1074594964028",
+    "project_id": "areader-dab53",
+    "storage_bucket": "areader-dab53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074594964028:android:2db4889a775f59cc435939",
+        "android_client_info": {
+          "package_name": "com.example.capstoneapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6veM_eg65sewhfeTMFL5vLtMLNO4s9FM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
