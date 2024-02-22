@@ -35,6 +35,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -65,7 +67,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.rememberImagePainter
 import com.example.capstoneapp.R
+import com.example.capstoneapp.model.MBook
 import com.example.capstoneapp.navigation.ReaderScreens
 import com.google.firebase.auth.FirebaseAuth
 
@@ -308,12 +312,13 @@ fun ReaderAppBar(
             }
             if (icon != null) {
                 Icon(imageVector = icon, contentDescription = "arrow back",
-                    tint = Color.Red.copy(alpha = 0.7f),
+                    tint = Color.Blue
+                        .copy(alpha = 0.7f),
                     modifier = Modifier.clickable { onBackArrowClicked.invoke() })
             }
             Spacer(modifier = Modifier.width(40.dp) )
             Text(text = title,
-                color = Color.Red.copy(alpha = 0.7f),
+                color = Color.Blue.copy(alpha = 0.7f),
                 style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp))
 
 

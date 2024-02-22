@@ -10,11 +10,9 @@ data class LoadingState(val status: Status, val message: String? = null) {
     }
 
     enum class Status {
-
         SUCCESS,
         FAILED,
         LOADING,
         IDLE
-
     }
 }

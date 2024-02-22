@@ -36,7 +36,6 @@ fun Home(navController: NavController,
     Scaffold(topBar = {
         ReaderAppBar(title = "A.Reader", navController = navController )
 
-
     },
         floatingActionButton = {
             FABContent{
@@ -92,7 +91,7 @@ fun HomeContent(navController: NavController, viewModel: HomeScreenViewModel) {
                 Text(text = currentUserName!!,
                     modifier = Modifier.padding(2.dp),
                     style = MaterialTheme.typography.overline,
-                    color = Color.Red,
+                    color = Color.Blue,
                     fontSize = 15.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Clip)
@@ -107,8 +106,6 @@ fun HomeContent(navController: NavController, viewModel: HomeScreenViewModel) {
         TitleSection(label = "Reading List")
         BookListArea(listOfBooks = listOfBooks,
             navController = navController)
-
-
 
     }
 
@@ -150,7 +147,7 @@ fun HorizontalScrollableComponent(listOfBooks: List<MBook>,
                 Surface(modifier = Modifier.padding(23.dp)) {
                     Text(text = "No books found. Add a Book",
                         style = TextStyle(
-                            color = Color.Red.copy(alpha = 0.4f),
+                            color = Color.Blue.copy(alpha = 0.4f),
                             fontWeight = FontWeight.Bold,
                             fontSize = 14.sp
                         )
@@ -188,7 +185,5 @@ fun ReadingRightNowArea(listOfBooks: List<MBook>,
         Log.d("TAG", "BoolListArea: $it")
         navController.navigate(ReaderScreens.UpdateScreen.name + "/$it")
     }
-
-
 
 }

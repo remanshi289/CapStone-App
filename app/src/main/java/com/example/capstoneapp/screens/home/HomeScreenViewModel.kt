@@ -5,6 +5,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.capstoneapp.FireRepository
 import com.example.capstoneapp.data.DataOrException
 import com.example.capstoneapp.model.MBook
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    private val repository: FireRepository): ViewModel() {
+    private val repository: FireRepository
+): ViewModel() {
     val data: MutableState<DataOrException<List<MBook>, Boolean, Exception>>
             = mutableStateOf(DataOrException(listOf(), true,Exception("")))
 
