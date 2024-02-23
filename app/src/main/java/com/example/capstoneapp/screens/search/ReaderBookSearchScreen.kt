@@ -1,5 +1,3 @@
-@file:Suppress("PreviewAnnotationInFunctionWithParameters")
-
 package com.example.capstoneapp.screens.search
 
 import android.annotation.SuppressLint
@@ -21,7 +19,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -30,6 +27,7 @@ import com.example.capstoneapp.components.InputField
 import com.example.capstoneapp.components.ReaderAppBar
 import com.example.capstoneapp.model.Item
 import com.example.capstoneapp.navigation.ReaderScreens
+
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalComposeUiApi
@@ -43,6 +41,7 @@ fun SearchScreen(navController: NavController,
             icon = Icons.Default.ArrowBack,
             navController = navController,
             showProfile = false){
+            //navController.popBackStack()
             navController.navigate(ReaderScreens.ReaderHomeScreen.name)
         }
     }) {
@@ -57,13 +56,9 @@ fun SearchScreen(navController: NavController,
                 }
                 Spacer(modifier = Modifier.height(13.dp))
                 BookList(navController = navController)
-
             }
-
-
         }
     }
-
 }
 
 @Composable
@@ -93,7 +88,6 @@ fun BookList(navController: NavController,
     }
 
 }
-
 
 @Composable
 fun BookRow(
@@ -142,11 +136,8 @@ fun BookRow(
                     fontStyle = FontStyle.Italic,
                     style = MaterialTheme.typography.caption)
             }
-
         }
-
     }
-
 }
 
 
@@ -162,11 +153,9 @@ fun SearchForm(
         val keyboardController = LocalSoftwareKeyboardController.current
         val valid = remember(searchQueryState.value) {
             searchQueryState.value.trim().isNotEmpty()
-
         }
 
-        InputField(
-            valueState = searchQueryState,
+        InputField(valueState = searchQueryState,
             labelId = "Search",
             enabled = true,
             onAction = KeyboardActions {
@@ -178,3 +167,11 @@ fun SearchForm(
         )
     }
 }
+
+
+
+
+
+
+
+

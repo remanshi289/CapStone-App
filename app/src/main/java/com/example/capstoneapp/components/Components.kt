@@ -1,6 +1,5 @@
 package com.example.capstoneapp.components
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.MotionEvent
 import android.widget.Toast
@@ -9,41 +8,15 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Card
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Logout
-import androidx.compose.material.icons.filled.StarBorder
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.rounded.FavoriteBorder
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -67,7 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.example.capstoneapp.R
 import com.example.capstoneapp.model.MBook
 import com.example.capstoneapp.navigation.ReaderScreens
@@ -75,9 +48,9 @@ import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun ReaderLogo(modifier: Modifier = Modifier) {
-    Text(text = "A Reader",
+    Text(text = "A. Reader",
         modifier = modifier.padding(bottom = 16.dp),
-        style = MaterialTheme.typography.h3,
+        style = MaterialTheme.typography.h4,
         color = Color.Blue.copy(alpha = 0.5f))
 }
 
@@ -97,8 +70,6 @@ fun EmailInput(
         keyboardType = KeyboardType.Email,
         imeAction = imeAction,
         onAction = onAction)
-
-
 }
 
 @Composable
@@ -123,11 +94,8 @@ fun InputField(
             .padding(bottom = 10.dp, start = 10.dp, end = 10.dp)
             .fillMaxWidth(),
         enabled = enabled,
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType,
-            imeAction = imeAction),
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
         keyboardActions = onAction)
-
-
 }
 
 @Composable
@@ -143,11 +111,12 @@ fun PasswordInput(
 
     val visualTransformation = if (passwordVisibility.value) VisualTransformation.None else
         PasswordVisualTransformation()
-    OutlinedTextField(value = passwordState.value,
+    OutlinedTextField(
+        value = passwordState.value,
         onValueChange = {
             passwordState.value = it
         },
-        label = { Text(text = labelId)},
+        label = { Text(text = labelId) },
         singleLine = true,
         textStyle = TextStyle(fontSize = 18.sp, color = MaterialTheme.colors.onBackground),
         modifier = modifier
@@ -156,11 +125,12 @@ fun PasswordInput(
         enabled = enabled,
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password,
-            imeAction = imeAction),
+            imeAction = imeAction
+        ),
         visualTransformation = visualTransformation,
-        trailingIcon = {PasswordVisibility(passwordVisibility = passwordVisibility)},
-        keyboardActions = onAction)
-
+        trailingIcon = { PasswordVisibility(passwordVisibility = passwordVisibility) },
+        keyboardActions = onAction
+    )
 }
 
 @Composable
@@ -170,6 +140,7 @@ fun PasswordVisibility(passwordVisibility: MutableState<Boolean>) {
         Icons.Default.Close
 
     }
+
 }
 
 @Composable
@@ -186,13 +157,9 @@ fun BookRating(score: Double = 4.5) {
             Text(text = score.toString(), style = MaterialTheme.typography.subtitle1)
 
         }
-
     }
-
-
 }
 
-@SuppressLint("RememberReturnType")
 @Composable
 fun ListCard(book: MBook,
              onPressDetails: (String) -> Unit = {}) {
@@ -217,7 +184,7 @@ fun ListCard(book: MBook,
             horizontalAlignment = Alignment.Start) {
             Row(horizontalArrangement = Arrangement.Center) {
 
-                Image(painter = rememberImagePainter(data = book.photoUrl.toString()),
+                Image(painter = rememberAsyncImagePainter(model = book.photoUrl.toString()),
                     contentDescription = "book image",
                     modifier = Modifier
                         .height(140.dp)
@@ -258,9 +225,6 @@ fun ListCard(book: MBook,
 
         }
     }
-
-
-
 }
 
 @Preview
@@ -286,8 +250,6 @@ fun RoundedButton(
         }
 
     }
-
-
 }
 
 @Composable
@@ -312,8 +274,7 @@ fun ReaderAppBar(
             }
             if (icon != null) {
                 Icon(imageVector = icon, contentDescription = "arrow back",
-                    tint = Color.Blue
-                        .copy(alpha = 0.7f),
+                    tint = Color.Blue.copy(alpha = 0.7f),
                     modifier = Modifier.clickable { onBackArrowClicked.invoke() })
             }
             Spacer(modifier = Modifier.width(40.dp) )
@@ -333,7 +294,7 @@ fun ReaderAppBar(
                         navController.navigate(ReaderScreens.LoginScreen.name)
                     }
             }) {
-                if (showProfile) Row() {
+                if (showProfile) Row {
                     Icon(imageVector = Icons.Filled.Logout ,
                         contentDescription = "Logout" ,
                         // tint = Color.Green.copy(alpha = 0.4f)
@@ -386,7 +347,7 @@ fun RatingBar(
     onPressRating: (Int) -> Unit
 ) {
     var ratingState by remember {
-        mutableStateOf(rating)
+        mutableIntStateOf(rating)
     }
 
     var selected by remember {
@@ -433,3 +394,4 @@ fun showToast(context: Context, msg: String) {
     Toast.makeText(context, msg, Toast.LENGTH_LONG)
         .show()
 }
+

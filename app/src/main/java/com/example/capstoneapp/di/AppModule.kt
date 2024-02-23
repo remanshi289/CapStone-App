@@ -1,7 +1,7 @@
 package com.example.capstoneapp.di
 
-import com.example.capstoneapp.FireRepository
 import com.example.capstoneapp.network.BooksApi
+import com.example.capstoneapp.repositiory.FireRepository
 import com.example.capstoneapp.utils.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module

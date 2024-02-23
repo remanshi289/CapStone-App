@@ -35,8 +35,8 @@ fun Home(navController: NavController,
 ) {
     Scaffold(topBar = {
         ReaderAppBar(title = "A.Reader", navController = navController )
-
     },
+
         floatingActionButton = {
             FABContent{
                 navController.navigate(ReaderScreens.SearchScreen.name)
@@ -49,10 +49,7 @@ fun Home(navController: NavController,
             HomeContent(navController, viewModel)
 
         }
-
     }
-
-
 }
 
 @Composable
@@ -68,6 +65,14 @@ fun HomeContent(navController: NavController, viewModel: HomeScreenViewModel) {
         Log.d("Books", "HomeContent: ${listOfBooks.toString()}")
     }
 
+//    val listOfBooks = listOf(
+//          MBook(id = "dadfa", title = "Hello Again", authors = "All of us", notes = null),
+//        MBook(id = "dadfa", title = " Again", authors = "All of us", notes = null),
+//        MBook(id = "dadfa", title = "Hello ", authors = "The world us", notes = null),
+//        MBook(id = "dadfa", title = "Hello Again", authors = "All of us", notes = null),
+//        MBook(id = "dadfa", title = "Hello Again", authors = "All of us", notes = null)
+//                            )
+    //me @gmail.com
     val email = FirebaseAuth.getInstance().currentUser?.email
     val currentUserName = if (!email.isNullOrEmpty())
         FirebaseAuth.getInstance().currentUser?.email?.split("@")
@@ -91,14 +96,12 @@ fun HomeContent(navController: NavController, viewModel: HomeScreenViewModel) {
                 Text(text = currentUserName!!,
                     modifier = Modifier.padding(2.dp),
                     style = MaterialTheme.typography.overline,
-                    color = Color.Blue,
+                    color = Color.Red,
                     fontSize = 15.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Clip)
                 Divider()
             }
-
-
         }
 
         ReadingRightNowArea(listOfBooks = listOfBooks,
@@ -106,7 +109,6 @@ fun HomeContent(navController: NavController, viewModel: HomeScreenViewModel) {
         TitleSection(label = "Reading List")
         BookListArea(listOfBooks = listOfBooks,
             navController = navController)
-
     }
 
 }
@@ -118,15 +120,10 @@ fun BookListArea(listOfBooks: List<MBook>,
         mBook.startedReading == null && mBook.finishedReading == null
     }
 
-
-
     HorizontalScrollableComponent(addedBooks){
         navController.navigate(ReaderScreens.UpdateScreen.name +"/$it")
 
     }
-
-
-
 }
 
 @Composable
@@ -147,7 +144,7 @@ fun HorizontalScrollableComponent(listOfBooks: List<MBook>,
                 Surface(modifier = Modifier.padding(23.dp)) {
                     Text(text = "No books found. Add a Book",
                         style = TextStyle(
-                            color = Color.Blue.copy(alpha = 0.4f),
+                            color = Color.Red.copy(alpha = 0.4f),
                             fontWeight = FontWeight.Bold,
                             fontSize = 14.sp
                         )
@@ -164,12 +161,7 @@ fun HorizontalScrollableComponent(listOfBooks: List<MBook>,
             }
 
         }
-
-
-
     }
-
-
 }
 
 
