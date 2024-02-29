@@ -85,7 +85,7 @@ fun ShowBookDetails(bookInfo: Resource<Item>,
 
     Card(modifier = Modifier.padding(34.dp),
         shape = CircleShape, elevation = 4.dp) {
-        Image(painter = painterResource(id = R.drawable.bookImage),
+        Image(painter = painterResource(id = R.drawable.bookimage),
             contentDescription = "Book Image",
             modifier = Modifier
                 .width(90.dp)

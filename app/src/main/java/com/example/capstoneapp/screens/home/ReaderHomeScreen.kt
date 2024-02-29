@@ -72,7 +72,7 @@ fun HomeContent(navController: NavController, viewModel: HomeScreenViewModel) {
 //        MBook(id = "dadfa", title = "Hello Again", authors = "All of us", notes = null),
 //        MBook(id = "dadfa", title = "Hello Again", authors = "All of us", notes = null)
 //                            )
-    //me @gmail.com
+
     val email = FirebaseAuth.getInstance().currentUser?.email
     val currentUserName = if (!email.isNullOrEmpty())
         FirebaseAuth.getInstance().currentUser?.email?.split("@")
@@ -96,7 +96,7 @@ fun HomeContent(navController: NavController, viewModel: HomeScreenViewModel) {
                 Text(text = currentUserName!!,
                     modifier = Modifier.padding(2.dp),
                     style = MaterialTheme.typography.overline,
-                    color = Color.Red,
+                    color = Color.Blue,
                     fontSize = 15.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Clip)
